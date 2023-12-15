@@ -59,12 +59,6 @@ class FavouriteService {
       fav?.classList.remove('hide');
     }
   }
-
-  /*
-  async clear() {
-    await localforage.removeItem(DB);
-    this._updCounters();
-  }*/
 }
 
 export const favouriteService = new FavouriteService();

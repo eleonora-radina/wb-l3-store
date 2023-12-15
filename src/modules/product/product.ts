@@ -3,6 +3,7 @@ import { View } from '../../utils/view';
 import { formatPrice } from '../../utils/helpers'
 import html from './product.tpl.html';
 import { ProductData } from 'types';
+import { favouriteService } from '../../services/favourites.service';
 
 type ProductComponentParams = { [key: string]: any };
 
@@ -21,14 +22,23 @@ export class Product {
     $root.appendChild(this.view.root);
   }
 
-  render() {
+  async render() {
     const { id, name, src, salePriceU } = this.product;
 
-    this.view.root.setAttribute('href', `/product?id=${id}`);
+    this.view.product.setAttribute('href', `/product?id=${id}`);
     this.view.img.setAttribute('src', src);
     this.view.title.innerText = name;
     this.view.price.innerText = formatPrice(salePriceU);
 
-    if (this.params.isHorizontal) this.view.root.classList.add('is__horizontal')
+    if (this.params.isHorizontal) this.view.product.classList.add('is__horizontal');
+    if (this.params.isBtnDeleteVisible) this.view.btnDelete.classList.add('visible');
+
+    this.view.btnDelete.onclick = this._removeFromFav.bind(this);
+  }
+
+  private async _removeFromFav() {
+    if (!this.product) return;
+    await favouriteService.removeProduct(this.product);
+    await this.params.updateFav();
   }
 }

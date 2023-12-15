@@ -1,5 +1,4 @@
 import { Component } from '../component';
-//import { Product } from '../product/product';
 import html from './favourites.tpl.html';
 import { favouriteService } from '../../services/favourites.service';
 import { ProductData } from 'types';
@@ -11,19 +10,17 @@ class Favourites extends Component {
 
   constructor(props: any) {
     super(props);
-    this.productList = new ProductList();
+    this.productList = new ProductList({ isBtnDeleteVisible: true, updateFav: () => this.render()});
     this.productList.attach(this.view.favcontainer);
   }
 
   async render() {
     this.products = await favouriteService.get();
+    this.productList.update(this.products);
     
     if (this.products.length < 1) {
       this.view.root.classList.add('is__empty');
-      return;
     }
-
-    this.productList.update(this.products);
   }
 }
 
