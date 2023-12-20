@@ -2,7 +2,7 @@ export enum EventType {
   Route = "route",
   ViewCard = "viewCard",
   ViewCardPromo = "viewCardPromo",
-  AddToCard = "addToCard",
+  AddToCart = "addToCart",
   Purchase = "purchase",
 }
 
