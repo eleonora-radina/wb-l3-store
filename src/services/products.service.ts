@@ -1,21 +1,18 @@
-import { userService } from '../services/user.service';
 
 class ProductsService {
 
   async getProducts() {
-    let userId = await userService.getId();
     return fetch('/api/getProducts', {
       headers: {
-        'x-userid': userId,
+        'x-userid': window.userId,
       }
     });
   }
 
   async getPopularProducts() {
-    let userId = await userService.getId();
     return fetch('/api/getPopularProducts', {
       headers: {
-        'x-userid': userId,
+        'x-userid': window.userId,
       }
     });
   }

@@ -3,10 +3,14 @@ import Router from "./router";
 import { cartService } from "./services/cart.service";
 import { userService } from "./services/user.service";
 
-new Router();
+let router = new Router();
 cartService.init();
-userService.init();
+userService.init()
+  .then(() => {
+    document.body.classList.add("is__ready");
+    router.route();
+  })
 
-setTimeout(() => {
+/*setTimeout(() => {
   document.body.classList.add("is__ready");
-}, 250);
+}, 250);*/
