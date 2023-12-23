@@ -1,0 +1,30 @@
+.suggestions {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+
+  &__text {
+    font-size: 22px;
+    //with ALSHauss font //line-height: 24px; 
+    line-height: 28px;
+    margin: 0;
+    margin-bottom: 4px;
+  }
+
+  &__item {
+    background-color: #F6F6FA;
+    border-radius: 8px;
+    padding: 4px 6px 8px;
+    font-size: 16px;
+    cursor: pointer;
+
+    .suggestions__text {
+      background: linear-gradient(45deg, rgb(218, 21, 125), rgb(141, 6, 204));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: table;
+      margin-bottom: 0;
+    }
+  }
+
+}
