@@ -27,3 +27,15 @@ export const formatPrice = (price: number) => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽'
   );
 };
+
+
+export const extractIdFromUrl = (url: string) => {
+  const urlParts = url.split('?');
+  if (urlParts.length > 1) {
+    const params = urlParts[1].split('=');
+    if (params.length > 1) {
+      return params[1];
+    }
+  }
+  return null;
+}
